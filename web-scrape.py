@@ -42,14 +42,6 @@ def get_data(pageNo, q):
     response = r.content.decode('utf-8')
     resp = json.dumps(response)
 
-    # print(response)
-
-    # with open('data.txt', 'w') as outfile:
-
-    #     soup.prettify()
-
-    # print(soup.body)
-
     for d in soup.findAll('span', attrs={'class': 'aok-inline-block zg-item'}):
         # for d in soup.findAll('div', attrs={'class': 'sg-col-4-of-12 sg-col-8-of-16 sg-col-16-of-24 sg-col-12-of-20 sg-col-24-of-32 sg-col sg-col-28-of-36 sg-col-20-of-28'}):
         # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
@@ -85,6 +77,7 @@ def get_data(pageNo, q):
         # else:
         #     all.append('-1')
         q.put(all)
+
 
         # print("---------------------------------------------------------------")
 results = []
@@ -128,4 +121,4 @@ if __name__ == "__main__":
     df = pd.DataFrame(
         {'Product Link': links, 'Price': prices, 'Ratings': ratings})
     print(df)
-    df.to_csv('products.csv', index=False, encoding='utf-8')
+    df.to_csv('products.csv', index=True, encoding='utf-8')
